@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #f5f1e8;
+  --color-red: #dc143c;
+  --color-gold: #ffc107;
+  --color-dark: #2b2b2b;
+  --color-gray-light: #e8e8e8;
+  --color-gray-medium: #666;
+}
+
+@layer base {
+  body {
+    @apply bg-cream text-dark font-sans transition-colors duration-300;
+  }
+
+  /* Added dark mode styles for body */
+  body.dark {
+    @apply bg-gray-900 text-gray-100;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold text-dark transition-colors duration-300;
+  }
+
+  /* Added dark mode styles for headings */
+  body.dark h1,
+  body.dark h2,
+  body.dark h3,
+  body.dark h4,
+  body.dark h5,
+  body.dark h6 {
+    @apply text-gray-100;
+  }
+
+  /* Dark mode support for common elements */
+  body.dark button:not(.bg-red):not(.bg-gold) {
+    @apply text-gray-100;
+  }
+
+  body.dark input,
+  body.dark textarea,
+  body.dark select {
+    @apply bg-gray-800 text-gray-100 border-gray-700;
+  }
+
+  body.dark .bg-cream {
+    @apply bg-gray-900;
+  }
+
+  body.dark .bg-gray-light {
+    @apply bg-gray-800;
+  }
+
+  body.dark .text-dark {
+    @apply text-gray-100;
+  }
+
+  body.dark .text-gray-medium {
+    @apply text-gray-400;
+  }
+
+  body.dark .border-gray-light {
+    @apply border-gray-700;
+  }
+
+  body.dark .shadow-lg,
+  body.dark .shadow-md {
+    @apply shadow-gray-950;
+  }
+}
