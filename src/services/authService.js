@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:8095/api/v1/user"
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL_1;
 
 export const authService = {
   sendOtp: async (phoneNumber) => {
