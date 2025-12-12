@@ -1,10 +1,10 @@
 "use client"
 
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useLocation as useLocationRouter } from "react-router-dom"
 import { ShoppingCart, MapPin, User, Menu, X, Moon, Sun, LogOut, Mail, MapPinIcon } from "lucide-react"
 import { useCart } from "../context/CartContext"
-import { useLocation } from "../context/LocationContext"
+import { useLocation as useLocationContext } from "../context/LocationContext"
 import { useDarkMode } from "../context/DarkModeContext"
 import { useAuth } from "../context/AuthContext"
 
@@ -12,10 +12,11 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [profileOpen, setProfileOpen] = useState(false)
   const { cartItems } = useCart()
-  const { selectedLocation, setShowLocationModal } = useLocation()
+  const { selectedLocation, setShowLocationModal } = useLocationContext()
   const { isDarkMode, toggleDarkMode } = useDarkMode()
   const { isAuthenticated, logout, phoneNumber, userData } = useAuth()
   const navigate = useNavigate()
+  const location = useLocationRouter()
 
   const handleNavigate = (page) => {
     navigate(`/${page}`)
@@ -32,6 +33,11 @@ export default function Header() {
   }
 
   const displayName = userData?.name || phoneNumber || "ACCOUNT"
+
+  const isActive = (path) => {
+    if (path === "") return location.pathname === "/"
+    return location.pathname === `/${path}`
+  }
 
   return (
     <div className="w-full">
@@ -66,31 +72,41 @@ export default function Header() {
             <nav className="hidden md:flex items-center gap-6">
               <button
                 onClick={() => handleNavigate("")}
-                className={`font-medium hover:text-red transition-colors ${isDarkMode ? "text-gray-100" : "text-dark"}`}
+                className={`font-medium hover:text-red transition-colors ${
+                  isDarkMode ? "text-gray-100" : "text-dark"
+                } ${isActive("") ? "border-b-2 border-red" : ""}`}
               >
                 HOME
               </button>
               <button
                 onClick={() => handleNavigate("menu")}
-                className={`font-medium border-b-2 border-red ${isDarkMode ? "text-gray-100" : "text-dark"}`}
+                className={`font-medium hover:text-red transition-colors ${
+                  isDarkMode ? "text-gray-100" : "text-dark"
+                } ${isActive("menu") ? "border-b-2 border-red" : ""}`}
               >
                 OUR MENU
               </button>
               <button
                 onClick={() => handleNavigate("big-deals")}
-                className={`font-medium hover:text-red transition-colors ${isDarkMode ? "text-gray-100" : "text-dark"}`}
+                className={`font-medium hover:text-red transition-colors ${
+                  isDarkMode ? "text-gray-100" : "text-dark"
+                } ${isActive("big-deals") ? "border-b-2 border-red" : ""}`}
               >
                 BIG DEALS
               </button>
-              <a
-                href="#"
-                className={`font-medium hover:text-red transition-colors ${isDarkMode ? "text-gray-100" : "text-dark"}`}
+              <button
+                onClick={() => handleNavigate("find-us")}
+                className={`font-medium hover:text-red transition-colors ${
+                  isDarkMode ? "text-gray-100" : "text-dark"
+                } ${isActive("find-us") ? "border-b-2 border-red" : ""}`}
               >
                 FIND US
-              </a>
+              </button>
               <button
                 onClick={() => handleNavigate("about")}
-                className={`font-medium hover:text-red transition-colors ${isDarkMode ? "text-gray-100" : "text-dark"}`}
+                className={`font-medium hover:text-red transition-colors ${
+                  isDarkMode ? "text-gray-100" : "text-dark"
+                } ${isActive("about") ? "border-b-2 border-red" : ""}`}
               >
                 ABOUT US
               </button>
@@ -143,7 +159,7 @@ export default function Header() {
                         isDarkMode ? "bg-gray-700 border border-gray-600" : "bg-white border border-gray-200"
                       }`}
                     >
-                      {/* Profile Header */}
+                    
                       <div className={`px-4 py-4 border-b ${isDarkMode ? "border-gray-600" : "border-gray-200"}`}>
                         <div className="flex items-center gap-3">
                           <div
@@ -162,7 +178,7 @@ export default function Header() {
                         </div>
                       </div>
 
-                      {/* Customer Information */}
+                      
                       <div className={`px-4 py-3 space-y-2 ${isDarkMode ? "bg-gray-700" : "bg-gray-50"}`}>
                         {userData?.email && (
                           <div className="flex items-start gap-3">
@@ -222,7 +238,7 @@ export default function Header() {
                         )}
                       </div>
 
-                      {/* Action Buttons */}
+                     
                       <div
                         className={`px-4 py-3 border-t space-y-2 ${isDarkMode ? "border-gray-600" : "border-gray-200"}`}
                       >
@@ -292,32 +308,39 @@ export default function Header() {
               <button
                 onClick={() => handleNavigate("")}
                 className={`font-medium text-left hover:text-red transition-colors ${
-                  isDarkMode ? "text-gray-100" : "text-dark"
+                  isActive("") ? "text-red" : isDarkMode ? "text-gray-100" : "text-dark"
                 }`}
               >
                 HOME
               </button>
-              <button onClick={() => handleNavigate("menu")} className="font-medium text-left text-red">
+              <button
+                onClick={() => handleNavigate("menu")}
+                className={`font-medium text-left hover:text-red transition-colors ${
+                  isActive("menu") ? "text-red" : isDarkMode ? "text-gray-100" : "text-dark"
+                }`}
+              >
                 OUR MENU
               </button>
               <button
                 onClick={() => handleNavigate("big-deals")}
                 className={`font-medium text-left hover:text-red transition-colors ${
-                  isDarkMode ? "text-gray-100" : "text-dark"
+                  isActive("big-deals") ? "text-red" : isDarkMode ? "text-gray-100" : "text-dark"
                 }`}
               >
                 BIG DEALS
               </button>
-              <a
-                href="#"
-                className={`font-medium hover:text-red transition-colors ${isDarkMode ? "text-gray-100" : "text-dark"}`}
+              <button
+                onClick={() => handleNavigate("find-us")}
+                className={`font-medium text-left hover:text-red transition-colors ${
+                  isActive("find-us") ? "text-red" : isDarkMode ? "text-gray-100" : "text-dark"
+                }`}
               >
                 FIND US
-              </a>
+              </button>
               <button
                 onClick={() => handleNavigate("about")}
                 className={`font-medium text-left hover:text-red transition-colors ${
-                  isDarkMode ? "text-gray-100" : "text-dark"
+                  isActive("about") ? "text-red" : isDarkMode ? "text-gray-100" : "text-dark"
                 }`}
               >
                 ABOUT US

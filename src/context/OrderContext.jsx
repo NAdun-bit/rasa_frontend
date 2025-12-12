@@ -8,11 +8,11 @@ const OrderContext = createContext()
 export function OrderProvider({ children }) {
   const [orders, setOrders] = useState([])
   const [loading, setLoading] = useState(false)
-  const [userId, setUserId] = useState(null) // Track current userId for filtering
+  const [userId, setUserId] = useState(null) 
 
   useEffect(() => {
     const token = localStorage.getItem("authToken")
-    const storedUserId = localStorage.getItem("userId") // Get userId from localStorage
+    const storedUserId = localStorage.getItem("userId") 
     if (token) {
       setUserId(storedUserId)
       fetchUserOrders(token, storedUserId)
@@ -23,7 +23,7 @@ export function OrderProvider({ children }) {
     try {
       setLoading(true)
       const userOrders = await authService.getUserOrders(token)
-      console.log("[v0] All orders from API:", userOrders, "userId:", currentUserId) // Debug log
+      console.log("[v0] All orders from API:", userOrders, "userId:", currentUserId) 
 
       let filteredOrders = Array.isArray(userOrders) ? userOrders : []
       if (currentUserId) {
@@ -31,7 +31,7 @@ export function OrderProvider({ children }) {
           const orderUserId = order.userId || order.customerId
           return orderUserId === currentUserId
         })
-        console.log("[v0] Filtered orders count:", filteredOrders.length) // Debug log
+        console.log("[v0] Filtered orders count:", filteredOrders.length) 
       }
       setOrders(filteredOrders)
     } catch (error) {

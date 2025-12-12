@@ -1,4 +1,4 @@
-// src/services/productApi.js
+
 
 const API_BASE_URL = "http://localhost:8090/api/v1/product"
 
@@ -11,7 +11,7 @@ const handleResponse = async (response) => {
 }
 
 export const productApi = {
-  // GET ALL PRODUCTS
+  
   getAllProducts: async () => {
     try {
       console.log("[API] Fetching all products from:", API_BASE_URL)
@@ -24,9 +24,9 @@ export const productApi = {
 
       const data = await handleResponse(response)
       console.log("[API] Raw products received:", data?.length, "items")
-      console.log("[API] Sample product:", data?.[0]) // SEE EXACTLY what backend sends
+      console.log("[API] Sample product:", data?.[0]) 
 
-      // Fix: BigDecimal comes as string or number → convert safely
+      
       return data.map((product) => {
         const price = product.productPrice
         const discount = product.productDiscount || 0
@@ -35,7 +35,7 @@ export const productApi = {
           ...product,
           productPrice: price != null ? Number(price) || 0 : 0,
           productDiscount: discount != null ? Number(discount) || 0 : 0,
-          // Also keep a clean "price" field for frontend filtering
+          
           price: price != null ? Number(price) || 0 : 0,
         }
       })
@@ -45,7 +45,7 @@ export const productApi = {
     }
   },
 
-  // GET PRODUCT BY ID
+  
   getProductById: async (productId) => {
     try {
       const response = await fetch(`${API_BASE_URL}/${productId}`, {
@@ -71,7 +71,7 @@ export const productApi = {
     }
   },
 
-  // CREATE PRODUCT
+  
   createProduct: async (productData, img1, img2, img3) => {
     try {
       const formData = new FormData()
@@ -102,7 +102,7 @@ export const productApi = {
     }
   },
 
-  // UPDATE PRODUCT
+
   updateProduct: async (productId, productData, img1, img2, img3) => {
     try {
       const formData = new FormData()
@@ -133,7 +133,7 @@ export const productApi = {
     }
   },
 
-  // DELETE PRODUCT
+  
   deleteProduct: async (productId) => {
     try {
       const response = await fetch(`${API_BASE_URL}/${productId}`, {

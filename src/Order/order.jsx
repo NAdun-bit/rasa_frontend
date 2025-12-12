@@ -54,7 +54,7 @@ export default function Order({ onNavigate }) {
           address: address,
         })
       })
-      // Set initial location
+     
       setSelectedLocation({
         lat: defaultLocation.lat,
         lng: defaultLocation.lng,

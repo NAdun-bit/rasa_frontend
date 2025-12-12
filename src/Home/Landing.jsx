@@ -586,10 +586,10 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* People and Space Section */}
+     
       <PeopleAndSpace isDarkMode={isDarkMode} />
 
-      {/* Instagram Section */}
+      
       <InstagramSection isDarkMode={isDarkMode} />
 
       <section className={`py-12 md:py-20 ${isDarkMode ? "bg-gray-900" : "bg-cream"}`} data-animate>

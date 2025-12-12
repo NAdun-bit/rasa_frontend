@@ -1,4 +1,4 @@
-// src/services/orderApi.js
+
 
 const API_BASE_URL = "http://localhost:8091/api/v1/order"
 
@@ -15,7 +15,7 @@ const handleResponse = async (response) => {
 }
 
 export const orderApi = {
-  // GET ALL ORDERS
+  
   getAllOrders: async () => {
     try {
       console.log("[Order API] Fetching all orders from:", API_BASE_URL)
@@ -40,7 +40,7 @@ export const orderApi = {
     }
   },
 
-  // GET ORDER BY ID
+ 
   getOrderById: async (orderId) => {
     try {
       console.log("[Order API] Fetching order ID:", orderId)
@@ -63,7 +63,7 @@ export const orderApi = {
     }
   },
 
-  // CREATE ORDER
+  
   createOrder: async (orderData) => {
     try {
       console.log("[Order API] Creating order with data:", orderData)
@@ -98,7 +98,7 @@ export const orderApi = {
     }
   },
 
-  // UPDATE ORDER
+  
   updateOrder: async (orderId, orderData) => {
     try {
       console.log("[Order API] Updating order ID:", orderId)
@@ -127,7 +127,7 @@ export const orderApi = {
     }
   },
 
-  // DELETE ORDER
+  
   deleteOrder: async (orderId) => {
     try {
       console.log("[Order API] Deleting order ID:", orderId)

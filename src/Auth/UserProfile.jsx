@@ -14,7 +14,7 @@ export default function UserProfile() {
   const navigate = useNavigate()
   const { isDarkMode } = useDarkMode()
   const { isAuthenticated, userData, authToken, phoneNumber, userId } = useAuth() // Added userId from context
-  const { orders, loading } = useOrder() // Use OrderContext instead of localStorage
+  const { orders, loading } = useOrder()
   const [profileData, setProfileData] = useState(null)
   const [profileLoading, setProfileLoading] = useState(true)
   const [profileError, setProfileError] = useState(null)
@@ -49,7 +49,7 @@ export default function UserProfile() {
     window.scrollTo(0, 0)
   }
 
-  const displayProfile = profileData || userData || {} // Prefer profileData, fallback to userData
+  const displayProfile = profileData || userData || {}
 
   if (!isAuthenticated) {
     return null
@@ -69,7 +69,7 @@ export default function UserProfile() {
         </button>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* User Profile Section */}
+         
           <div className={`lg:col-span-1 ${isDarkMode ? "bg-gray-800" : "bg-white"} p-6 rounded-lg shadow-lg h-fit`}>
             <h2 className={`text-2xl font-bold mb-6 ${isDarkMode ? "text-gray-100" : "text-dark"}`}>MY PROFILE</h2>
 
@@ -122,7 +122,7 @@ export default function UserProfile() {
             )}
           </div>
 
-          {/* Orders Section */}
+         
           <div className="lg:col-span-3 space-y-6">
             <div>
               <h2 className={`text-2xl font-bold mb-4 ${isDarkMode ? "text-gray-100" : "text-dark"}`}>ORDER HISTORY</h2>
@@ -158,7 +158,7 @@ export default function UserProfile() {
                     className={`${isDarkMode ? "bg-gray-800" : "bg-white"} p-6 rounded-lg shadow border-l-4 border-red`}
                   >
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
-                      {/* Order ID */}
+                     
                       <div>
                         <p
                           className={`text-xs font-semibold uppercase ${isDarkMode ? "text-gray-400" : "text-gray-600"}`}
@@ -168,7 +168,7 @@ export default function UserProfile() {
                         <p className={`text-sm font-bold text-red`}>{order.orderId || order.id}</p>
                       </div>
 
-                      {/* User ID */}
+                    
                       <div>
                         <p
                           className={`text-xs font-semibold uppercase ${isDarkMode ? "text-gray-400" : "text-gray-600"}`}
@@ -180,7 +180,7 @@ export default function UserProfile() {
                         </p>
                       </div>
 
-                      {/* Order Date */}
+                      
                       <div className="flex items-start gap-2">
                         <Calendar size={16} className={`mt-1 ${isDarkMode ? "text-gray-400" : "text-gray-600"}`} />
                         <div>
@@ -195,7 +195,7 @@ export default function UserProfile() {
                         </div>
                       </div>
 
-                      {/* Order Type */}
+                      
                       <div className="flex items-start gap-2">
                         {order.deliveryType === "delivery" || order.orderType === "delivery" ? (
                           <Truck size={16} className={`mt-1 ${isDarkMode ? "text-gray-400" : "text-gray-600"}`} />
@@ -214,7 +214,7 @@ export default function UserProfile() {
                         </div>
                       </div>
 
-                      {/* Location */}
+                    
                       <div className="flex items-start gap-2">
                         <MapPin size={16} className={`mt-1 ${isDarkMode ? "text-gray-400" : "text-gray-600"}`} />
                         <div>
@@ -229,7 +229,7 @@ export default function UserProfile() {
                         </div>
                       </div>
 
-                      {/* Status */}
+                      
                       <div>
                         <p
                           className={`text-xs font-semibold uppercase ${isDarkMode ? "text-gray-400" : "text-gray-600"}`}
@@ -244,7 +244,7 @@ export default function UserProfile() {
                       </div>
                     </div>
 
-                    {/* Items */}
+                    
                     <div className={`border-t pt-4 ${isDarkMode ? "border-gray-700" : "border-gray-200"}`}>
                       <p className={`text-sm font-semibold mb-3 ${isDarkMode ? "text-gray-400" : "text-gray-600"}`}>
                         ITEMS ({order.items?.length || order.orderItems?.length || 0})
@@ -261,7 +261,7 @@ export default function UserProfile() {
                       </div>
                     </div>
 
-                    {/* Order Total */}
+                    
                     <div
                       className={`border-t mt-4 pt-4 flex justify-between items-center ${isDarkMode ? "border-gray-700" : "border-gray-200"}`}
                     >

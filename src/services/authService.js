@@ -21,7 +21,7 @@ export const authService = {
       if (contentType && contentType.includes("application/json")) {
         data = await response.json()
       } else {
-        // If backend returns plain text, convert it to JSON format
+        
         const text = await response.text()
         data = { message: text, success: true }
       }
@@ -248,7 +248,7 @@ export const authService = {
   isProfileComplete: async () => {
     try {
       const profile = await authService.getCurrentUserProfile()
-      // Check if all required fields are filled
+     
       return !!(profile?.name && profile?.email && profile?.address && profile?.location)
     } catch {
       return false

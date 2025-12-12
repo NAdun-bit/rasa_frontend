@@ -7,6 +7,7 @@ import Order from "./Order/order"
 import OrderDetails from "./Checkout/OrderDetails"
 import Payment from "./Checkout/Payment"
 import AboutUs from "./About/AboutUs"
+import FindUs from "./FindUs/FindUs"
 import LoginPage from "./Auth/LoginPage"
 import UserProfile from "./Auth/UserProfile"
 import { CartProvider } from "./context/CartContext"
@@ -39,6 +40,7 @@ function App() {
                       <Route path="/checkout" element={<OrderDetails />} />
                       <Route path="/payment" element={<Payment />} />
                       <Route path="/about" element={<AboutUs />} />
+                      <Route path="/find-us" element={<FindUs />} />
                       <Route path="/login" element={<LoginPage />} />
                       <Route path="/profile" element={<UserProfile />} />
                     </Routes>

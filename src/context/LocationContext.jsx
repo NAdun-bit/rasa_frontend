@@ -4,7 +4,7 @@ const LocationContext = createContext()
 
 export function LocationProvider({ children }) {
   const [selectedLocation, setSelectedLocation] = useState({
-    address: "Yakkala Sri Lanka",
+    address: "London ,UK",
     lat: 6.9271,
     lng: 80.6005,
   })

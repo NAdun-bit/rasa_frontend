@@ -12,7 +12,7 @@ import Header from "../components/Header"
 import Footer from "../components/Footer"
 
 const LoginPage = () => {
-  const [step, setStep] = useState("phone") // phone, otp, profile, success
+  const [step, setStep] = useState("phone") 
   const [phoneNumber, setPhoneNumber] = useState("")
   const [loading, setLoading] = useState(false)
   const [checkingProfile, setCheckingProfile] = useState(false)
@@ -31,7 +31,7 @@ const LoginPage = () => {
       const profile = await authService.getCurrentUserProfile()
       console.log("[v0] Fetched profile:", profile)
 
-      // If profile has name, email, address, and location - user is existing
+     
       if (profile?.name && profile?.email && profile?.address && profile?.location) {
         console.log("[v0] Profile complete - skipping form")
         setStep("success")
@@ -41,7 +41,7 @@ const LoginPage = () => {
       }
     } catch (error) {
       console.log("[v0] Could not fetch profile, showing form:", error)
-      // If error fetching profile, assume new user and show form
+      
       setStep("profile")
     } finally {
       setCheckingProfile(false)
@@ -69,10 +69,10 @@ const LoginPage = () => {
           backgroundAttachment: "fixed",
         }}
       >
-        {/* Blur and overlay effect */}
+        
         <div className="absolute inset-0 bg-black/40" style={{ backdropFilter: "blur(8px)" }} />
 
-        {/* Content container */}
+        
         <div className="relative z-10 w-full max-w-md">
           {step === "phone" && <PhoneLogin onPhoneSubmit={handlePhoneSubmit} loading={loading} />}
           {step === "otp" && (

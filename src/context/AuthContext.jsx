@@ -8,7 +8,7 @@ const AuthContext = createContext()
 export const AuthProvider = ({ children }) => {
   const [authToken, setAuthToken] = useState(null)
   const [phoneNumber, setPhoneNumber] = useState(null)
-  const [userId, setUserId] = useState(null) // Added userId state
+  const [userId, setUserId] = useState(null) 
   const [userData, setUserData] = useState({
     name: null,
     email: null,
@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const token = localStorage.getItem("authToken")
     const phone = localStorage.getItem("phoneNumber")
-    const storedUserId = localStorage.getItem("userId") // Retrieve stored userId
+    const storedUserId = localStorage.getItem("userId") 
     if (token) {
       setAuthToken(token)
       setPhoneNumber(phone)
@@ -35,11 +35,11 @@ export const AuthProvider = ({ children }) => {
   const fetchUserProfile = async (token) => {
     try {
       const profileData = await authService.getUserProfile(token)
-      console.log("[v0] Profile data received:", profileData) // Debug log
-      const extractedUserId = profileData?.id || profileData?.userId // Extract userId from profile
+      console.log("[v0] Profile data received:", profileData) 
+      const extractedUserId = profileData?.id || profileData?.userId 
       if (extractedUserId) {
         setUserId(extractedUserId)
-        localStorage.setItem("userId", extractedUserId) // Store userId in localStorage
+        localStorage.setItem("userId", extractedUserId) 
       }
       setUserData({
         name: profileData?.name || null,
@@ -69,7 +69,7 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     setAuthToken(null)
     setPhoneNumber(null)
-    setUserId(null) // Clear userId on logout
+    setUserId(null) 
     setUserData({
       name: null,
       email: null,
@@ -88,7 +88,7 @@ export const AuthProvider = ({ children }) => {
       value={{
         authToken,
         phoneNumber,
-        userId, // Expose userId in context
+        userId, 
         userData,
         isAuthenticated,
         loading,

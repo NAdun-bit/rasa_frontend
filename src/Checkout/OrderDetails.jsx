@@ -46,7 +46,7 @@ export default function OrderDetails() {
     let processedValue = type === "checkbox" ? checked : value
 
     if (name === "mobile") {
-      processedValue = value.replace(/\D/g, "").slice(0, 10) // Max 10 digits for Sri Lanka
+      processedValue = value.replace(/\D/g, "").slice(0, 10) 
     }
 
     setFormData((prev) => ({
@@ -54,7 +54,7 @@ export default function OrderDetails() {
       [name]: processedValue,
     }))
 
-    // Clear error for this field when user starts typing
+    
     if (errors[name]) {
       setErrors((prev) => ({
         ...prev,
@@ -75,7 +75,7 @@ export default function OrderDetails() {
   const handleProceedToPayment = () => {
     const newErrors = {}
 
-    // Validate all fields
+    
     if (!formData.firstName?.trim()) newErrors.firstName = "First name is required"
     if (!formData.lastName?.trim()) newErrors.lastName = "Last name is required"
 

@@ -11,7 +11,7 @@ import { useOrder } from "../context/OrderContext"
 import { useNavigate } from "react-router-dom"
 import { useOrderDetails } from "../context/OrderDetailsContext"
 import { ChevronRight, Lock, CreditCard, Wallet, Banknote } from "lucide-react"
-import { orderApi } from "../services/orderApi" // Import order API service
+import { orderApi } from "../services/orderApi" 
 
 function Payment() {
   const navigate = useNavigate()
@@ -31,7 +31,7 @@ function Payment() {
   })
   const [isProcessing, setIsProcessing] = useState(false)
 
-  // AUTHENTICATION: redirect if not logged in
+ 
   useEffect(() => {
     if (!authToken) {
       navigate("/login")
@@ -127,10 +127,10 @@ function Payment() {
       const createdOrder = await orderApi.createOrder(backendOrderData)
       console.log("[v0] Order created successfully:", createdOrder)
 
-      // Add to frontend order context
+     
       addOrder(frontendOrder)
 
-      // Save to local storage for offline reference
+      
       const existingOrders = JSON.parse(localStorage.getItem("userOrders") || "[]")
       localStorage.setItem("userOrders", JSON.stringify([frontendOrder, ...existingOrders]))
 
@@ -202,7 +202,7 @@ function Payment() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-6">
-            {/* Payment Summary */}
+            
             <div
               className={`${isDarkMode ? "bg-blue-900 bg-opacity-30" : "bg-blue-50"} p-8 rounded-lg text-center space-y-2`}
             >
@@ -212,14 +212,14 @@ function Payment() {
               </p>
             </div>
 
-            {/* Payment Method Box */}
+           
             <div className={`${isDarkMode ? "bg-gray-800" : "bg-white"} p-6 rounded-lg space-y-6`}>
               <h3 className={`text-lg font-bold ${isDarkMode ? "text-gray-100" : "text-dark"}`}>
                 SELECT PAYMENT METHOD
               </h3>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {/* Card */}
+               
                 <button
                   onClick={() => setPaymentMethod("card")}
                   className={`p-6 rounded-lg border-2 transition flex flex-col items-center gap-3 ${
@@ -238,7 +238,7 @@ function Payment() {
                   </span>
                 </button>
 
-                {/* Wallet */}
+               
                 <button
                   onClick={() => setPaymentMethod("wallet")}
                   className={`p-6 rounded-lg border-2 transition flex flex-col items-center gap-3 ${
@@ -257,7 +257,7 @@ function Payment() {
                   </span>
                 </button>
 
-                {/* Cash */}
+               
                 <button
                   onClick={() => setPaymentMethod("cash")}
                   className={`p-6 rounded-lg border-2 transition flex flex-col items-center gap-3 ${
@@ -277,10 +277,10 @@ function Payment() {
                 </button>
               </div>
 
-              {/* CARD PAYMENT FIELDS */}
+              
               {paymentMethod === "card" && (
                 <div className="space-y-4 mt-6 pt-6 border-t border-gray-300">
-                  {/* Card Number */}
+                  
                   <div>
                     <label className={`block text-sm font-semibold mb-2 ${isDarkMode ? "text-gray-100" : "text-dark"}`}>
                       Card Number
@@ -290,7 +290,7 @@ function Payment() {
                       name="cardNumber"
                       value={cardData.cardNumber}
                       onChange={(e) => {
-                        const value = e.target.value.replace(/\D/g, "") // Only digits
+                        const value = e.target.value.replace(/\D/g, "") 
                         if (value.length <= 16) {
                           setCardData({ ...cardData, cardNumber: value })
                         }
@@ -304,7 +304,7 @@ function Payment() {
                     />
                   </div>
 
-                  {/* Cardholder Name */}
+                  
                   <div>
                     <label className={`block text-sm font-semibold mb-2 ${isDarkMode ? "text-gray-100" : "text-dark"}`}>
                       Cardholder Name
@@ -324,7 +324,7 @@ function Payment() {
                   </div>
 
                   <div className="grid grid-cols-2 gap-4">
-                    {/* Expiry Date */}
+                   
                     <div>
                       <label
                         className={`block text-sm font-semibold mb-2 ${isDarkMode ? "text-gray-100" : "text-dark"}`}
@@ -335,9 +335,9 @@ function Payment() {
                         type="month"
                         name="expiryDate"
                         onChange={(e) => {
-                          const raw = e.target.value // YYYY-MM
+                          const raw = e.target.value 
                           const [year, month] = raw.split("-")
-                          const formatted = `${month}/${year.substring(2)}` // MM/YY
+                          const formatted = `${month}/${year.substring(2)}` 
                           setCardData({ ...cardData, expiryDate: formatted })
                         }}
                         className={`w-full px-4 py-3 rounded border ${
@@ -348,7 +348,7 @@ function Payment() {
                       />
                     </div>
 
-                    {/* CVC */}
+                    
                     <div>
                       <label
                         className={`block text-sm font-semibold mb-2 ${isDarkMode ? "text-gray-100" : "text-dark"}`}
@@ -377,7 +377,7 @@ function Payment() {
                 </div>
               )}
 
-              {/* WALLET */}
+              
               {paymentMethod === "wallet" && (
                 <div className={`p-4 rounded ${isDarkMode ? "bg-gray-700" : "bg-gray-50"} text-center py-8`}>
                   <p className={isDarkMode ? "text-gray-300" : "text-gray-medium"}>
@@ -386,7 +386,7 @@ function Payment() {
                 </div>
               )}
 
-              {/* CASH */}
+              
               {paymentMethod === "cash" && (
                 <div className={`p-4 rounded ${isDarkMode ? "bg-gray-700" : "bg-gray-50"} text-center py-8`}>
                   <p className={isDarkMode ? "text-gray-300" : "text-gray-medium"}>
@@ -396,7 +396,7 @@ function Payment() {
               )}
             </div>
 
-            {/* BUTTONS */}
+           
             <div className="flex gap-4">
               <button
                 onClick={() => handleNavigate("checkout")}
@@ -426,7 +426,7 @@ function Payment() {
             </div>
           </div>
 
-          {/* RIGHT SIDE: ORDER SUMMARY */}
+         
           <div className="lg:col-span-1">
             <div
               className={`${isDarkMode ? "bg-gray-800" : "bg-white"} p-6 rounded-lg shadow-lg space-y-6 sticky top-6`}

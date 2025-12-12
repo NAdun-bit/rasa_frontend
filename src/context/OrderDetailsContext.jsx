@@ -8,7 +8,7 @@ export function OrderDetailsProvider({ children }) {
   const [orderDetails, setOrderDetails] = useState({
     firstName: "",
     lastName: "",
-    mobile: "", // Phone number now stored as string
+    mobile: "", 
     email: "",
     deliveryAddress: "",
     agreeToTerms: false,

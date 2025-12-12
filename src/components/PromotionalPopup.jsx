@@ -5,7 +5,7 @@ import { useDarkMode } from "../context/DarkModeContext"
 export default function PromotionalPopup({ isOpen, onClose, promotion = null }) {
   const { isDarkMode } = useDarkMode()
 
-  // Default promotion if none provided
+  
   const defaultPromotion = {
     title: "Welcome RAASA Express",
     date: "Continue your order to proceed.",
@@ -29,7 +29,7 @@ export default function PromotionalPopup({ isOpen, onClose, promotion = null }) 
           isDarkMode ? "bg-gray-900" : "bg-white"
         }`}
       >
-        {/* Close Button */}
+        
         <button
           onClick={onClose}
           className="absolute top-4 right-4 z-10 bg-white/20 hover:bg-white/40 text-white p-2 rounded-full transition"
@@ -38,9 +38,9 @@ export default function PromotionalPopup({ isOpen, onClose, promotion = null }) 
           <X size={24} />
         </button>
 
-        {/* Content Grid */}
+       
         <div className="grid md:grid-cols-2 gap-0">
-          {/* Left Side - Image */}
+         
           <div className="relative h-96 md:h-auto overflow-hidden bg-gray-900">
             {currentPromo.logoImage && (
               <div className="absolute top-6 left-6 z-10">
@@ -59,7 +59,7 @@ export default function PromotionalPopup({ isOpen, onClose, promotion = null }) 
             )}
           </div>
 
-          {/* Right Side - Text Content */}
+          
           <div
             className={`p-8 md:p-12 flex flex-col justify-between ${
               isDarkMode ? "bg-gray-800 text-white" : "bg-white text-dark"
@@ -79,7 +79,7 @@ export default function PromotionalPopup({ isOpen, onClose, promotion = null }) 
               </p>
             </div>
 
-            {/* Book Now Button */}
+           
             <button
               onClick={onClose}
               className="w-full mt-6 px-6 py-3 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold rounded transition-all transform hover:scale-105"
